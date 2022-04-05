@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:patterns_povider/models/post_model.dart';
 import 'package:patterns_povider/services/http_service.dart';
 
 class ViewModelDetail extends ChangeNotifier{
+  final titleController = TextEditingController();
+  final bodyController = TextEditingController();
+
   void apiEdit(String title,String body, Post? post){
     if(post != null){
       Post post2 = Post(id: post.id,title: title,body: body,userId: post.userId);

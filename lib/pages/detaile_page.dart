@@ -14,16 +14,14 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   ViewModelDetail viewModelDetail = ViewModelDetail();
-  final titleController = TextEditingController();
-  final bodyController = TextEditingController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     if(widget.post != null){
-      titleController.text = widget.post!.title!;
-      bodyController.text = widget.post!.body!;
+      viewModelDetail.titleController.text = widget.post!.title!;
+      viewModelDetail.bodyController.text = widget.post!.body!;
     }
   }
 
@@ -38,9 +36,9 @@ class _DetailPageState extends State<DetailPage> {
           IconButton(
             onPressed: (){
               if(widget.post != null){
-                viewModelDetail.apiEdit(titleController.text,bodyController.text,widget.post);
+                viewModelDetail.apiEdit(viewModelDetail.titleController.text,viewModelDetail.bodyController.text,widget.post);
               }else{
-                viewModelDetail.apiCreate(titleController.text,bodyController.text,widget.post);
+                viewModelDetail.apiCreate(viewModelDetail.titleController.text,viewModelDetail.bodyController.text,widget.post);
               }
               Navigator.of(context).pop(true);
             },
@@ -57,14 +55,14 @@ class _DetailPageState extends State<DetailPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: titleController,
+                    controller: viewModelDetail.titleController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Title",
                     ),
                   ),
                   TextFormField(
-                    controller: bodyController,
+                    controller: viewModelDetail.bodyController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Body",
